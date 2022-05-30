@@ -2,15 +2,15 @@
 #include<stdlib.h>
 #define MAX_VERTICES 10 //vertex의 최대 수 정의
 #define MAX_QUEUE_SIZE 100//큐의 최대 수 정의
-#define TRUE 1
-#define FALSE 0
+#define TRUE 1 //상수 정의
+#define FALSE 0 //상수 정의
 int visited[MAX_VERTICES];//배열을 전역 변수로 정의
 typedef int element;//int 자료형을 element로 정의
 typedef struct { //자료구조 큐를 사용하기 위해 큐 구조체 정의
 	element  queue[MAX_QUEUE_SIZE];
 	int  front, rear;
 } QueueType; //구조체 별칭 QueueType 선언
-void init(QueueType *q) 
+void init(QueueType *q) //큐를 초기화 해주는 함수
 {
 	q->front = q->rear = 0;
 }
@@ -38,12 +38,6 @@ element dequeue(QueueType *q) //삭제 함수
 	return q->queue[q->front];
 }
 
-/*element peek(QueueType *q)
-{
-	if (is_empty(q))
-		printf("큐가 공백상태입니다");
-	return q->queue[(q->front + 1) % MAX_QUEUE_SIZE];
-}*/
 typedef struct GraphNode{ //GraphNode 구조체 선언
     int vertex;
     struct GraphNode* link; 
@@ -69,7 +63,7 @@ int main()
 
 	do{
 		printf("\n\n");
-		printf("[----- [박준용] [2019038010] -----]");
+		printf("[----- [박준용] [2019038010] -----]\n");
         printf("----------------------------------------------------------------\n");
 		printf("                   Graph Searches                               \n");
 		printf("----------------------------------------------------------------\n");
@@ -93,7 +87,7 @@ int main()
 			printf("vertex: ");
 			scanf("%d",&num);
 			DepthFirstSearch(graphnode,num);
-			for(int i=0;i<MAX_VERTICES;i++){ //dfs,bfs를 실행했을 때 visite 배열 초기화
+			for(int i=0;i<MAX_VERTICES;i++){ //dfs,bfs를 실행했을 때 visited 배열 초기화
 				visited[i] = 0;
             }
 			break;
@@ -109,7 +103,10 @@ int main()
 		case 'b': case 'B'://b를 입력받은 경우
 			printf("vertex: ");
 			scanf("%d",&num);
-			BreathFirstSearch(graphnode, num); 
+			BreathFirstSearch(graphnode, num);
+			for(int i=0;i<MAX_VERTICES;i++){ //dfs,bfs를 실행했을 때 visited 배열 초기화
+				visited[i] = 0;
+            } 
 			break;
 		case 'q': case 'Q'://q를 입력받은 경우
 			break;
